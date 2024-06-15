@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/External/SDL/include/**"
+                "C:/Users/rob/source/gameprogcpp/Chapter01"
             ],
             "defines": [
                 "_DEBUG",

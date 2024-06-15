@@ -6,6 +6,7 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
+#include <iostream>
 #include "Game.h"
 
 const int thickness = 15;
@@ -52,19 +53,19 @@ bool Game::Initialize()
     mPaddlePos2.y = 768.0f / 2.0f;
 
     // multiball pong; get some
-    // Ball ball1;
-    // ball1.vPos = { 1024.0f / 2.0f, 768.0f / 2.0f };
-    // ball1.vVel = { -200.0f, 235.0f };
-    // mBall.push_back(ball1);
-    // Ball ball2;
-    // ball2.vPos = { 1024.0f / 3.0f, 768.0f / 3.0f };
-    // ball2.vVel = { -100.0f, 210.0f };
-    // mBall.push_back(ball2);
+    Ball ball1;
+    ball1.vPos = {1024.0f / 2.0f, 768.0f / 2.0f};
+    ball1.vVel = {-200.0f, 235.0f};
+    mBall.push_back(ball1);
+    Ball ball2;
+    ball2.vPos = {1024.0f / 3.0f, 768.0f / 3.0f};
+    ball2.vVel = {-100.0f, 210.0f};
+    mBall.push_back(ball2);
 
-    mBallPos.x = 1024.0f / 2.0f;
-    mBallPos.y = 768.0f / 2.0f;
-    mBallVel.x = -200.0f;
-    mBallVel.y = 235.0f;
+    // mBallPos.x = 1024.0f / 2.0f;
+    // mBallPos.y = 768.0f / 2.0f;
+    // mBallVel.x = -200.0f;
+    // mBallVel.y = 235.0f;
     return true;
 }
 
@@ -171,6 +172,11 @@ void Game::UpdateGame()
     }
 
     // Update ball position based on ball velocity
+    int vecSize = mBall.size();
+    for (int i = 0; i < vecSize; i++)
+    {
+        std::cout << mBall[i] << std::endl;
+    }
 
     mBallPos.x += mBallVel.x * deltaTime;
     mBallPos.y += mBallVel.y * deltaTime;
