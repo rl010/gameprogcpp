@@ -41,7 +41,7 @@
  *  SDL officially supports Windows, Mac OS X, Linux, iOS, and Android.
  *  Support for other platforms may be found in the source code.
  *
- *  SDL is written in C, works natively with C++, and there are bindings 
+ *  SDL is written in C, works natively with C++, and there are bindings
  *  available for several other languages, including C# and Python.
  *
  *  This library is distributed under the zlib license, which can be found
@@ -95,7 +95,8 @@
 #include "begin_code.h"
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /* As of version 0.5, SDL is loaded dynamically into the application */
@@ -107,50 +108,49 @@ extern "C" {
  *  specify the subsystems which you will be using in your application.
  */
 /* @{ */
-#define SDL_INIT_TIMER          0x00000001
-#define SDL_INIT_AUDIO          0x00000010
-#define SDL_INIT_VIDEO          0x00000020  /**< SDL_INIT_VIDEO implies SDL_INIT_EVENTS */
-#define SDL_INIT_JOYSTICK       0x00000200  /**< SDL_INIT_JOYSTICK implies SDL_INIT_EVENTS */
-#define SDL_INIT_HAPTIC         0x00001000
-#define SDL_INIT_GAMECONTROLLER 0x00002000  /**< SDL_INIT_GAMECONTROLLER implies SDL_INIT_JOYSTICK */
-#define SDL_INIT_EVENTS         0x00004000
-#define SDL_INIT_NOPARACHUTE    0x00100000  /**< Don't catch fatal signals */
-#define SDL_INIT_EVERYTHING ( \
-                SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS | \
-                SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_GAMECONTROLLER \
-            )
-/* @} */
+#define SDL_INIT_TIMER 0x00000001
+#define SDL_INIT_AUDIO 0x00000010
+#define SDL_INIT_VIDEO 0x00000020    /**< SDL_INIT_VIDEO implies SDL_INIT_EVENTS */
+#define SDL_INIT_JOYSTICK 0x00000200 /**< SDL_INIT_JOYSTICK implies SDL_INIT_EVENTS */
+#define SDL_INIT_HAPTIC 0x00001000
+#define SDL_INIT_GAMECONTROLLER 0x00002000 /**< SDL_INIT_GAMECONTROLLER implies SDL_INIT_JOYSTICK */
+#define SDL_INIT_EVENTS 0x00004000
+#define SDL_INIT_NOPARACHUTE 0x00100000 /**< Don't catch fatal signals */
+#define SDL_INIT_EVERYTHING (                                            \
+    SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS | \
+    SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_GAMECONTROLLER)
+   /* @} */
 
-/**
- *  This function initializes  the subsystems specified by \c flags
- *  Unless the ::SDL_INIT_NOPARACHUTE flag is set, it will install cleanup
- *  signal handlers for some commonly ignored fatal signals (like SIGSEGV).
- */
-extern DECLSPEC int SDLCALL SDL_Init(Uint32 flags);
+   /**
+    *  This function initializes  the subsystems specified by \c flags
+    *  Unless the ::SDL_INIT_NOPARACHUTE flag is set, it will install cleanup
+    *  signal handlers for some commonly ignored fatal signals (like SIGSEGV).
+    */
+   extern DECLSPEC int SDLCALL SDL_Init(Uint32 flags);
 
-/**
- *  This function initializes specific SDL subsystems
- */
-extern DECLSPEC int SDLCALL SDL_InitSubSystem(Uint32 flags);
+   /**
+    *  This function initializes specific SDL subsystems
+    */
+   extern DECLSPEC int SDLCALL SDL_InitSubSystem(Uint32 flags);
 
-/**
- *  This function cleans up specific SDL subsystems
- */
-extern DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags);
+   /**
+    *  This function cleans up specific SDL subsystems
+    */
+   extern DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags);
 
-/**
- *  This function returns a mask of the specified subsystems which have
- *  previously been initialized.
- *
- *  If \c flags is 0, it returns a mask of all initialized subsystems.
- */
-extern DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags);
+   /**
+    *  This function returns a mask of the specified subsystems which have
+    *  previously been initialized.
+    *
+    *  If \c flags is 0, it returns a mask of all initialized subsystems.
+    */
+   extern DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags);
 
-/**
- *  This function cleans up all initialized subsystems. You should
- *  call it upon all exit conditions.
- */
-extern DECLSPEC void SDLCALL SDL_Quit(void);
+   /**
+    *  This function cleans up all initialized subsystems. You should
+    *  call it upon all exit conditions.
+    */
+   extern DECLSPEC void SDLCALL SDL_Quit(void);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
