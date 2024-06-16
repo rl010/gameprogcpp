@@ -62,6 +62,12 @@ bool Game::Initialize()
     ball2.vVel = {-100.0f, 210.0f};
     mBall.push_back(ball2);
 
+
+    for (const auto& ball : mBall)
+    {
+        std::cout << "Ball position: (" << ball.vPos.x << ", " << ball.vPos.y << ")\n";
+        std::cout << "Ball velocity: (" << ball.vVel.x << ", " << ball.vVel.y << ")\n";
+    }
     // mBallPos.x = 1024.0f / 2.0f;
     // mBallPos.y = 768.0f / 2.0f;
     // mBallVel.x = -200.0f;
