@@ -8,6 +8,7 @@
 
 #pragma once
 #include <vector>
+#include <ostream>
 #include "SDL/SDL.h"
 
 // Vector2 struct just stores x/y coordinates
@@ -35,7 +36,6 @@ public:
 	void RunLoop();
 	// Shutdown the game
 	void Shutdown();
-
 private:
 	// Helper functions for the game loop
 	void ProcessInput();
@@ -58,9 +58,14 @@ private:
 	// Position of paddle
 	Vector2 mPaddlePos;
 	Vector2 mPaddlePos2;
-	// Position of ball
-	Vector2 mBallPos;
-	// Velocity of ball
-	Vector2 mBallVel;
 	std::vector<Ball> mBall;
 };
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, Vector2& vect_name) {
+	// Iterate over each element and print it
+	for (const auto& element : vect_name) {
+		os << element << " ";
+	}
+	return os;
+}

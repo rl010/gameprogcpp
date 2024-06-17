@@ -62,12 +62,7 @@ bool Game::Initialize()
     ball2.vVel = {-100.0f, 210.0f};
     mBall.push_back(ball2);
 
-
-    for (const auto& ball : mBall)
-    {
-        std::cout << "Ball position: (" << ball.vPos.x << ", " << ball.vPos.y << ")\n";
-        std::cout << "Ball velocity: (" << ball.vVel.x << ", " << ball.vVel.y << ")\n";
-    }
+    std::cout << "My vector: " << ball2.vVel << std::endl;
     // mBallPos.x = 1024.0f / 2.0f;
     // mBallPos.y = 768.0f / 2.0f;
     // mBallVel.x = -200.0f;
@@ -179,65 +174,64 @@ void Game::UpdateGame()
 
     // Update ball position based on ball velocity
     int vecSize = mBall.size();
-    for (int i = 0; i < vecSize; i++)
-    {
-        std::cout << mBall[i] << std::endl;
+    for (const Ball& ball : mBall) {
+        std::cout << ball.vPos.x << std::endl;
     }
-
-    mBallPos.x += mBallVel.x * deltaTime;
-    mBallPos.y += mBallVel.y * deltaTime;
+    return;
+    //mBallPos.x += mBallVel.x * deltaTime;
+    //mBallPos.y += mBallVel.y * deltaTime;
 
     // Bounce if needed
     // Did we intersect with the paddle?
-    float diff = mPaddlePos.y - mBallPos.y;
-    // Take absolute value of difference
-    diff = (diff > 0.0f) ? diff : -diff;
+    //float diff = mPaddlePos.y - mBallPos.y;
+    //// Take absolute value of difference
+    //diff = (diff > 0.0f) ? diff : -diff;
 
-    if (
-        // Our y-difference is small enough
-        diff <= paddleH / 2.0f &&
-        // We are in the correct x-position
-        mBallPos.x <= 25.0f && mBallPos.x >= 20.0f &&
-        // The ball is moving to the left
-        mBallVel.x < 0.0f)
-    {
-        mBallVel.x *= -1.0f;
-    }
+    //if (
+    //    // Our y-difference is small enough
+    //    diff <= paddleH / 2.0f &&
+    //    // We are in the correct x-position
+    //    mBallPos.x <= 25.0f && mBallPos.x >= 20.0f &&
+    //    // The ball is moving to the left
+    //    mBallVel.x < 0.0f)
+    //{
+    //    mBallVel.x *= -1.0f;
+    //}
 
-    float diff2 = mPaddlePos2.y - mBallPos.y;
-    diff2 = (diff2 > 0.0f) ? diff2 : -diff2;
-    if (
-        // Our y-difference is small enough
-        diff2 <= paddleH / 2.0f &&
-        // We are in the correct x-position
-        mBallPos.x >= 999.0f && mBallPos.x <= 1004.0f &&
-        // The ball is moving to the right
-        mBallVel.x > 0.0f)
-    {
-        mBallVel.x *= -1.0f;
-    }
+    //float diff2 = mPaddlePos2.y - mBallPos.y;
+    //diff2 = (diff2 > 0.0f) ? diff2 : -diff2;
+    //if (
+    //    // Our y-difference is small enough
+    //    diff2 <= paddleH / 2.0f &&
+    //    // We are in the correct x-position
+    //    mBallPos.x >= 999.0f && mBallPos.x <= 1004.0f &&
+    //    // The ball is moving to the right
+    //    mBallVel.x > 0.0f)
+    //{
+    //    mBallVel.x *= -1.0f;
+    //}
 
-    // Did the ball go off the screen? (if so, end game)
-    else if (mBallPos.x <= 0.0f || mBallPos.x >= 1005.0f)
-    {
-        mIsRunning = false;
-    }
-    // Did the ball collide with the right wall?
-    else if (mBallPos.x >= (1024.0f - thickness) && mBallVel.x > 0.0f)
-    {
-        mBallVel.x *= -1.0f;
-    }
+    //// Did the ball go off the screen? (if so, end game)
+    //else if (mBallPos.x <= 0.0f || mBallPos.x >= 1005.0f)
+    //{
+    //    mIsRunning = false;
+    //}
+    //// Did the ball collide with the right wall?
+    //else if (mBallPos.x >= (1024.0f - thickness) && mBallVel.x > 0.0f)
+    //{
+    //    mBallVel.x *= -1.0f;
+    //}
 
-    // Did the ball collide with the top wall?
-    if (mBallPos.y <= thickness && mBallVel.y < 0.0f)
-    {
-        mBallVel.y *= -1;
-    }
-    // Did the ball collide with the bottom wall?
-    else if (mBallPos.y >= (768 - thickness) && mBallVel.y > 0.0f)
-    {
-        mBallVel.y *= -1;
-    }
+    //// Did the ball collide with the top wall?
+    //if (mBallPos.y <= thickness && mBallVel.y < 0.0f)
+    //{
+    //    mBallVel.y *= -1;
+    //}
+    //// Did the ball collide with the bottom wall?
+    //else if (mBallPos.y >= (768 - thickness) && mBallVel.y > 0.0f)
+    //{
+    //    mBallVel.y *= -1;
+    //}
 }
 
 void Game::GenerateOutput()
