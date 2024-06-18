@@ -8,7 +8,6 @@
 
 #pragma once
 #include <vector>
-#include <ostream>
 #include "SDL/SDL.h"
 
 // Vector2 struct just stores x/y coordinates
@@ -61,8 +60,3 @@ private:
 	Vector2 mPaddlePos2;
 	std::vector<Ball> mBall;
 };
-
-std::ostream &operator<<(std::ostream &os, const Ball &b)
-{
-	return os << "ball vposx: " << b.vPos.x << "\nball vposx: " << b.vPos.y << "\nball vvelx: " << b.vVel.x << "\nball vvely: " << b.vVel.y << std::endl;
-}

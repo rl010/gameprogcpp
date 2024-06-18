@@ -12,7 +12,12 @@
 const int thickness = 15;
 const float paddleH = 100.0f;
 
-Game::Game() : mWindow(nullptr), mRenderer(nullptr), mTicksCount(0), mIsRunning(true), mPaddleDir(0), mPaddleDir2(0) {}
+Game::Game() : mWindow(nullptr), mRenderer(nullptr), mTicksCount(0), mIsRunning(true), mPaddleDir(0), mPaddleDir2(0), mPaddlePos({ 0.0f, 0.0f }), mPaddlePos2({0.0f, 0.0f}) {}
+
+std::ostream& operator<<(std::ostream& os, const Ball& b)
+{
+    return os << "ball vposx: " << b.vPos.x << "\nball vposx: " << b.vPos.y << "\nball vvelx: " << b.vVel.x << "\nball vvely: " << b.vVel.y << std::endl;
+}
 
 bool Game::Initialize()
 {
@@ -255,13 +260,13 @@ void Game::UpdateGame()
     // Did ball1 collide with the top wall?
     else if (mBall[0].vPos.y <= thickness && mBall[0].vVel.y < 0.0f)
     {
-        mBall[0].vPos.y *= -1;
+        mBall[0].vVel.y *= -1;
     }
 
     // Did ball2 collide with the top wall?
     else if (mBall[1].vPos.y <= thickness && mBall[1].vVel.y < 0.0f)
     {
-        mBall[1].vPos.y *= -1;
+        mBall[1].vVel.y *= -1;
     }
 
     // Did ball1 collide with the bottom wall?
@@ -326,8 +331,8 @@ void Game::GenerateOutput()
     SDL_RenderFillRect(mRenderer, &ball);
 
     // Draw ball2
-    SDL_Rect ball{static_cast<int>(mBall[1].vPos.x - thickness / 2), static_cast<int>(mBall[1].vPos.y - thickness / 2), thickness, thickness};
-    SDL_RenderFillRect(mRenderer, &ball);
+    SDL_Rect ball2{static_cast<int>(mBall[1].vPos.x - thickness / 2), static_cast<int>(mBall[1].vPos.y - thickness / 2), thickness, thickness};
+    SDL_RenderFillRect(mRenderer, &ball2);
 
     // Swap front buffer and back buffer
     SDL_RenderPresent(mRenderer);
