@@ -36,6 +36,7 @@ public:
 	void RunLoop();
 	// Shutdown the game
 	void Shutdown();
+
 private:
 	// Helper functions for the game loop
 	void ProcessInput();
@@ -61,11 +62,7 @@ private:
 	std::vector<Ball> mBall;
 };
 
-template <typename T>
-std::ostream& operator<<(std::ostream& os, Vector2& vect_name) {
-	// Iterate over each element and print it
-	for (const auto& element : vect_name) {
-		os << element << " ";
-	}
-	return os;
+std::ostream &operator<<(std::ostream &os, const Ball &b)
+{
+	return os << "ball vposx: " << b.vPos.x << "\nball vposx: " << b.vPos.y << "\nball vvelx: " << b.vVel.x << "\nball vvely: " << b.vVel.y << std::endl;
 }
