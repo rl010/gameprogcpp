@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------
 // From Game Programming in C++ by Sanjay Madhav
 // Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
+//
 // Released under the BSD License
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
@@ -11,12 +11,8 @@
 #include "Component.h"
 #include <algorithm>
 
-Actor::Actor(Game* game)
-	:mState(EActive)
-	, mPosition(Vector2::Zero)
-	, mScale(1.0f)
-	, mRotation(0.0f)
-	, mGame(game)
+Actor::Actor(Game *game)
+	: mState(EActive), mPosition(Vector2::Zero), mScale(1.0f), mRotation(0.0f), mGame(game)
 {
 	mGame->AddActor(this);
 }
@@ -53,15 +49,15 @@ void Actor::UpdateActor(float deltaTime)
 {
 }
 
-void Actor::AddComponent(Component* component)
+void Actor::AddComponent(Component *component)
 {
 	// Find the insertion point in the sorted vector
 	// (The first element with a order higher than me)
 	int myOrder = component->GetUpdateOrder();
 	auto iter = mComponents.begin();
 	for (;
-		iter != mComponents.end();
-		++iter)
+		 iter != mComponents.end();
+		 ++iter)
 	{
 		if (myOrder < (*iter)->GetUpdateOrder())
 		{
@@ -73,7 +69,7 @@ void Actor::AddComponent(Component* component)
 	mComponents.insert(iter, component);
 }
 
-void Actor::RemoveComponent(Component* component)
+void Actor::RemoveComponent(Component *component)
 {
 	auto iter = std::find(mComponents.begin(), mComponents.end(), component);
 	if (iter != mComponents.end())
